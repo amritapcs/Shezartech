@@ -1,2 +1,0 @@
-# Shezartech
-Chatbot
