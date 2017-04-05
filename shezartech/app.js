@@ -26,10 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) {
   if (err) throw err
-    //console.log(db)
+    console.log(db)
 })
 
-console.log(login)
 app.use('/', index);
 app.use('/login', login);
 app.use('/users', users);
