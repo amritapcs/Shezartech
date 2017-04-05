@@ -4,13 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
 
 var app = express();
-
-console.log("himanshu");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +24,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) {
+  if (err) throw err
+    //console.log(db)
+})
+
+console.log(login)
 app.use('/', index);
+app.use('/login', login);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -43,6 +50,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.post('/login', function (req, res) {
+	
 });
 
 module.exports = app;
