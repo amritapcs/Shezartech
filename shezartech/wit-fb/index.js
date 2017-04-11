@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 8445;
 // sessionId -> {fbid: facebookUserId, context: sessionState}
 const sessions = {};
 
-const findOrCreateSession = (fbid) => {
+const findOrCreateSession = (fbid) = {
   let sessionId;
   // Let's see if we already have a session for the user fbid
   Object.keys(sessions).forEach(k => {
