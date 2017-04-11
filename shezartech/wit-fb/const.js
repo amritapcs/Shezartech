@@ -1,4 +1,4 @@
-'use strict';
+
 
 // Wit.ai parameters
 const WIT_TOKEN = process.env.WIT_TOKEN;

@@ -1,4 +1,4 @@
-'use strict';
+
 
 // Weather Example
 // See https://wit.ai/sungkim/weather/stories and https://wit.ai/docs/quickstart
