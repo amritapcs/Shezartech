@@ -29,6 +29,9 @@ MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) 
     //console.log(db)
 })
 
+console.log("himanshu")
+
+
 app.use('/', index);
 app.use('/login', login);
 app.use('/users', users);
