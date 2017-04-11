@@ -1,14 +1,21 @@
 var express = require('express');
+global.express = express;
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var MongoClient = require('mongodb').MongoClient
+var async = require('async');
+global.async = async;
 
+var db = require('./app/db');
+global.db = db;
 var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var signup = require('./routes/signup');
+var main_page = require('./routes/main_page');
+var form_contact = require('./routes/form_contact');
 
 var app = express();
 
@@ -20,7 +27,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -31,10 +38,12 @@ MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) 
 
 console.log("himanshu")
 
-
 app.use('/', index);
 app.use('/login', login);
 app.use('/users', users);
+app.use('/signup', signup);
+app.use('/main_page', main_page);
+app.use('/form_contact', form_contact);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,8 +63,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.post('/login', function (req, res) {
-	
-});
 
 module.exports = app;
