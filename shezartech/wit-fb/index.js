@@ -1,5 +1,4 @@
 
-
 // Messenger API integration example
 // We assume you have:
 // * a Wit.ai bot setup (https://wit.ai/docs/quickstart)
@@ -28,10 +27,10 @@ const PORT = process.env.PORT || 8445;
 // sessionId -> {fbid: facebookUserId, context: sessionState}
 const sessions = {};
 
-const findOrCreateSession = (fbid) = {
+const findOrCreateSession =function (fbid) {
   let sessionId;
   // Let's see if we already have a session for the user fbid
-  Object.keys(sessions).forEach(k => {
+  Object.keys(sessions).forEach(function (k) {
     if (sessions[k].fbid === fbid) {
       // Yep, got it!
       sessionId = k;
@@ -64,7 +63,7 @@ app.get('/', function(req, res) {
 });
 
 // Webhook verify setup using FB_VERIFY_TOKEN
-app.get('/webhook', (req, res) => {
+app.get('/webhook', function (req, res) {
 
   var oaid = req.query.oaid
   var uid = req.query.fromuid;
@@ -90,7 +89,7 @@ app.get('/webhook', (req, res) => {
 });
 
 // The main message handler
-app.post('/webhook', (req, res) => {
+app.post('/webhook', function (req, res) {
 
   // Parsing the Messenger API response
   console.log(req.body)
@@ -134,7 +133,7 @@ app.post('/webhook', (req, res) => {
         sessionId, // the user's current session
         msg, // the user's message 
         sessions[sessionId].context, // the user's current session state
-        (error, context) => {
+        function (error, context) {
           if (error) {
             console.log('Oops! Got an error from Wit:', error);
           } else {

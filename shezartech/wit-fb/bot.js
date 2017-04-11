@@ -6,7 +6,7 @@ const Wit = require('node-wit').Wit;
 const FB = require('./facebook.js');
 const Config = require('./const.js');
 
-const firstEntityValue = (entities, entity) => {
+const firstEntityValue = function (entities, entity) {
   const val = entities && entities[entity] &&
     Array.isArray(entities[entity]) &&
     entities[entity].length > 0 &&
@@ -36,7 +36,7 @@ const actions = {
     if (recipientId) {
       // Yay, we found our recipient!
       // Let's forward our bot response to her.
-      FB.fbMessage(recipientId, message, (err, data) => {
+      FB.fbMessage(recipientId, message, function (err, data) {
         if (err) {
           console.log(
             'Oops! An error occurred while forwarding the response to',
@@ -79,7 +79,7 @@ const actions = {
 };
 
 
-const getWit = () => {
+const getWit = function () {
   return new Wit(Config.WIT_TOKEN, actions);
 };
 
