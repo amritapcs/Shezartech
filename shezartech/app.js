@@ -9,6 +9,8 @@ var MongoClient = require('mongodb').MongoClient
 var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var signup = require('./routes/signup');
+var main_page = require('./routes/main_page');
 
 var app = express();
 
@@ -32,6 +34,7 @@ MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) 
 app.use('/', index);
 app.use('/login', login);
 app.use('/users', users);
+app.use('main_page', main_page);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
