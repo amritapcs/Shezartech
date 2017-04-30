@@ -35,6 +35,7 @@ MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) 
 
 app.use('/', index);
 app.use('/login', login);
+app.use('/signup', signup);
 app.use('/users', users);
 app.use('main_page', main_page);
 
