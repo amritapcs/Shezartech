@@ -6,6 +6,7 @@ var busboy = require('connect-busboy');
 router.post('/', function (req, res, next) {
 
 	console.log("comming")
+	console.log(req.body)
 
 	if(typeof req.body != 'undefined') {
 
@@ -20,7 +21,7 @@ router.post('/', function (req, res, next) {
 		else if(req.body.config_type == '2') {
 			req.send("csv data inserted successfully !!")
 		}
-		else if(req.body.config_type == '4') {
+		else if(req.body.config_type == 4) {
 			console.log(req.body)
 		}
 		else {
