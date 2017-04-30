@@ -135,8 +135,11 @@
 		        	<div class="modal-body">
 		          		<form action="/form_contact" method="POST" enctype="multipart/form-data">
 		          			<input type="hidden" name="config_type" value="4">
-		          			<label for="name">Type content here :</label>
-		          			<textarea class="form-control" rows="5"></textarea>
+		          			<div class="form-group">
+			          			<label for="name">Type content here :</label>
+			          			<textarea class="form-control" rows="5"></textarea>
+			          		</div>
+		          			<button type="submit" class="btn btn-success btn_main">Send</button>
 		          		</form>
 		        	</div>
 		        	<div class="modal-footer">
