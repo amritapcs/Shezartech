@@ -20,64 +20,59 @@ router.post('/', function (req, res, next) {
 			res.send("contact data inserted successfully !!")
 		}
 		else if(req.body.config_type == '2') {
-			req.send("csv data inserted successfully !!")
+			res.send("csv data inserted successfully !!")
 		}
 		else if(req.body.config_type == '4') {
 			db.getConnection(function (db) {
-        console.log("connected db from zalo contact page : ")
+        		console.log("connected db from zalo contact page : ")
 
-        db.collection('zalo_contacts', function(err, collection) {
-            collection.find().toArray(function(err, resulte) {
+        		db.collection('zalo_contacts', function(err, collection) {
+            		collection.find().toArray(function(err, resulte) {
 
-                resulte.forEach(function (resulte,iop){
+                		resulte.forEach(function (resulte,iop){
 
-                	console.log("kkkkkkkkkkk")
-                	console.log(resulte)
+		                    var result = resulte;   
+		                    var name = result.name;
+		                    var phone = parseInt(result.phone);
+		                    var oaid = '1032900368143269705';
+		                    var company = result.company;
+		                    var number = result.number;
+		                    var date = result.date;
+		                    var templateid = result.templateid;
+		                    var timestamp = new Date().getTime();
+		                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
+		                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
 
-                    var result = resulte;   
-                    var name = result.name;
-                    var phone = parseInt(result.phone);
-                    var oaid = '1032900368143269705';
-                    var company = result.company;
-                    var number = result.number;
-                    var date = result.date;
-                    var templateid = result.templateid;
-                    var timestamp = new Date().getTime();
-                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
-                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
+		                    execPhp('messenger.php', (error, php, outprint) => { 
 
-                    console.log("ddddddddddddddddd")
-                    console.log(data)
+		                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
+		                       
+		                            var options = { method: 'POST',
+		                                url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
+		                                qs: { 
+		                                    oaid: oaid,
+		                                    data: data,
+		                                    timestamp: timestamp,
+		                                    mac: results
+		                                },
+		                                headers: { 
+		                                    'cache-control': 'no-cache' 
+		                                } 
+		                            };
 
-                    execPhp('messenger.php', (error, php, outprint) => { 
+		                            request(options, function (error, response, body) {
+		                              if (error) throw new Error(error);
 
-                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
-                       
-                            var options = { method: 'POST',
-                                url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
-                                qs: { 
-                                    oaid: oaid,
-                                    data: data,
-                                    timestamp: timestamp,
-                                    mac: results
-                                },
-                                headers: { 
-                                    'cache-control': 'no-cache' 
-                                } 
-                            };
+		                              console.log(body);
+		                            });
+		                        });
+		                    });
+                		});
+            		});
+        		});
 
-                            request(options, function (error, response, body) {
-                              if (error) throw new Error(error);
-
-                              console.log(body);
-                            });
-                        });
-                    });
-                });
-            });
-        });
-
-    });
+    		});
+    		res.send("Broadcasting done successfully !!")
 		}
 		else {
 			var multiparty = require('multiparty');
