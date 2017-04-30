@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var busboy = require('connect-busboy');
+const execPhp = require('exec-php');
 
 /* GET Form Contact page. */
 router.post('/', function (req, res, next) {
 
 	console.log("comming")
-	console.log(req.body)
 
 	if(typeof req.body != 'undefined') {
 
@@ -22,7 +22,55 @@ router.post('/', function (req, res, next) {
 			req.send("csv data inserted successfully !!")
 		}
 		else if(req.body.config_type == '4') {
-			console.log(req.body)
+			db.getConnection(function (db) {
+        console.log("connected db from zalo contact page : ")
+
+        db.collection('zalo_contacts', function(err, collection) {
+            collection.find().toArray(function(err, resulte) {
+
+                resulte.forEach(function (resulte,iop){
+
+                    var result = resulte;   
+                    var name = result.name;
+                    var phone = result.phone;
+                    var oaid = '1032900368143269705';
+                    var company = result.company;
+                    var number = result.number;
+                    var date = result.date;
+                    var templateid = result.templateid;
+                    var timestamp = new Date().getTime();
+                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
+                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
+
+                    execPhp('messenger.php', (error, php, outprint) => { 
+
+                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
+                       
+                            var options = { method: 'POST',
+                                url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
+                                qs: { 
+                                    oaid: oaid,
+                                    data: data,
+                                    timestamp: timestamp,
+                                    mac: results
+                                },
+                                headers: { 
+                                    'cache-control': 'no-cache' 
+                                } 
+                            };
+
+                            request(options, function (error, response, body) {
+                              if (error) throw new Error(error);
+
+                              console.log(body);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+
+    });
 		}
 		else {
 			var multiparty = require('multiparty');
