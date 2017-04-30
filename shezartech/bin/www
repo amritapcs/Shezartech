@@ -7,6 +7,12 @@
 var app = require('../app');
 var debug = require('debug')('shezartech:server');
 var http = require('http');
+var fs = require('fs');
+var https = require('https');
+var options = {
+    key: fs.readFileSync('/var/www/botshezar.com/botshezar.com.key'),
+    cert: fs.readFileSync('/var/www/botshezar.com/219c087d9f98a683.crt')
+};
 
 /**
  * Get port from environment and store in Express.
@@ -17,14 +23,14 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
-var server = http.createServer(app);
+var httpsServer = https.createServer(options, app);
+//var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+httpsServer.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
