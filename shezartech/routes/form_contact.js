@@ -31,6 +31,9 @@ router.post('/', function (req, res, next) {
 
                 resulte.forEach(function (resulte,iop){
 
+                	console.log("kkkkkkkkkkk")
+                	console.log(resulte)
+
                     var result = resulte;   
                     var name = result.name;
                     var phone = parseInt(result.phone);
