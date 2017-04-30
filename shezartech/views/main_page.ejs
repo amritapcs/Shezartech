@@ -25,7 +25,7 @@
 				<button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-success btn_main">Import Csv</button>
 				<!-- <button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-success btn_main">Import Database</button>
 				<button type="button" class="btn btn-success btn_main export_database_button">Export Database</button> -->
-				<button type="button" data-target="#myModal2" class="btn btn-success btn_main broadcast_button">Broadcast Message</button>
+				<button type="button" data-toggle="modal" data-target="#myModal4" class="btn btn-success btn_main broadcast_button">Broadcast Message</button>
 			</div>
 		</div>
 
@@ -101,6 +101,29 @@
 		</div>
 
 		<div class="modal fade" id="myModal3" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      	<!-- Modal content-->
+		      	<div class="modal-content">
+		        	<div class="modal-header">
+		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          		<h4 class="modal-title">Modal Header 3</h4>
+		        	</div>
+		        	<div class="modal-body">
+		          		<form action="/form_contact" method="POST" enctype="multipart/form-data">
+		          			<label for="name">Import Csv Here:</label>
+    						<input type="file" class="form-control import_database_contact" name="import_database_contact">
+		          		</form>
+		        	</div>
+		        	<div class="modal-footer">
+		          		<button type="button" class="btn btn-success btn_main" data-dismiss="modal">Close</button>
+		        	</div>
+		      	</div>
+		      
+		    </div>
+		</div>
+
+		<div class="modal fade" id="myModal4" role="dialog">
 		    <div class="modal-dialog">
 		    
 		      	<!-- Modal content-->
