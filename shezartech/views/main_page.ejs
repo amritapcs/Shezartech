@@ -25,7 +25,11 @@
 				<button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-success btn_main">Import Csv</button>
 				<!-- <button type="button" data-toggle="modal" data-target="#myModal3" class="btn btn-success btn_main">Import Database</button>
 				<button type="button" class="btn btn-success btn_main export_database_button">Export Database</button> -->
-				<button type="button" data-toggle="modal" data-target="#myModal4" class="btn btn-success btn_main broadcast_button">Broadcast Message</button>
+				
+				<form action="form_contact" method="POST">
+		          	<input type="hidden" name="config_type" value="4">
+					<button type="submit" class="btn btn-success btn_main broadcast_button">Broadcast Message</button>
+				</form>
 			</div>
 		</div>
 
