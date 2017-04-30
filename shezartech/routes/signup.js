@@ -1,7 +1,13 @@
+var express = require('express');
 var router = express.Router();
 
 /* GET Signup page. */
-router.post('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
+	res.render('login', { title: 'Login Form' });
+});
+
+router.post('/', function (req, res, next) {
+	console.log("jjjjjjj")
 
   	db.getConnection(function (db) {
 	  console.log("connected db from signup page : ")
