@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
 
                     var result = resulte;   
                     var name = result.name;
-                    var phone = result.phone;
+                    var phone = parseInt(result.phone);
                     var oaid = '1032900368143269705';
                     var company = result.company;
                     var number = result.number;
