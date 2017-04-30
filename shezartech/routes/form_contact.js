@@ -4,6 +4,8 @@ var busboy = require('connect-busboy');
 /* GET Form Contact page. */
 router.post('/', function (req, res, next) {
 
+	console.log("comming")
+
 	if(typeof req.body != 'undefined') {
 
 		if(req.body.config_type == '1') {
