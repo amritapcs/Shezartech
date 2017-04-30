@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
 
 			db.getConnection(function (db) {
 			  	console.log("connected db from contact entry page : ")
-			  	db.collection('contacts').insert(req.body)
+			  	db.collection('zalo_contacts').insert(req.body)
 			});
 			res.send("contact data inserted successfully !!")
 		}
@@ -91,7 +91,7 @@ router.post('/', function (req, res, next) {
 			    });
 
 			    db.getConnection(function (db) {
-			        var col = db.collection('contacts')
+			        var col = db.collection('zalo_contacts')
 				    parser.on("readable", function(){
 				        var record;
 					        while (record = parser.read()) {
