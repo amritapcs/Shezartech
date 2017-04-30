@@ -20,6 +20,9 @@ router.post('/', function (req, res, next) {
 		else if(req.body.config_type == '2') {
 			req.send("csv data inserted successfully !!")
 		}
+		else if(req.body.config_type == '4') {
+			console.log(req.body)
+		}
 		else {
 			var multiparty = require('multiparty');
 			var form = new multiparty.Form();
