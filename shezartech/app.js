@@ -5,15 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient
-
-global.express = express;
+var db = require('./app/db');
+global.db = db;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
 var main_page = require('./routes/main_page');
-var form_contact = require('./routes/form_contact')
+var form_contact = require('./routes/form_contact');
 
 var app = express();
 
@@ -36,10 +36,10 @@ MongoClient.connect('mongodb://localhost:27017/Test_shztch', function (err, db) 
 
 app.use('/', index);
 app.use('/login', login);
-app.use('/signup', signup);
 app.use('/users', users);
-app.use('main_page', main_page);
-app.use('form_contacts', form_contact)
+app.use('/main_page', main_page);
+app.use('/signup', signup);
+app.use('/form_contact', form_contact);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
