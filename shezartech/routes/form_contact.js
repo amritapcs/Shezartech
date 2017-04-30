@@ -43,6 +43,9 @@ router.post('/', function (req, res, next) {
                     var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
                     var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
 
+                    console.log("ddddddddddddddddd")
+                    console.log(data)
+
                     execPhp('messenger.php', (error, php, outprint) => { 
 
                         php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
