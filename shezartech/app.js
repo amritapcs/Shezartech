@@ -61,21 +61,21 @@ app.use(function(err, req, res, next) {
 
 var cron = require('node-cron');
  
-var task = cron.schedule('* * * * *', function() {
-    console.log('will execute every minute until stopped');
-    db.getConnection(function (db) {
-        console.log("connected db from zalo contact page : ")
+// var task = cron.schedule('* * * * *', function() {
+//     console.log('will execute every minute until stopped');
+//     db.getConnection(function (db) {
+//         console.log("connected db from zalo contact page : ")
 
-        db.collection('zalo_contacts', function(err, collection) {
-            collection.find().toArray(function(err, resulte) {
+//         db.collection('queue', function(err, collection) {
+//             collection.find().toArray(function(err, resulte) {
 
-                resulte.forEach(function (resulte,iop){
-                    console.log(resulte)
-                    console.log("iop ::: "+iop)
-                });
-            });
-        });
-    });
-});
+//                 resulte.forEach(function (resulte,iop){
+//                     console.log(resulte)
+//                     console.log("iop ::: "+iop)
+//                 });
+//             });
+//         });
+//     });
+// });
 
 module.exports = app;
