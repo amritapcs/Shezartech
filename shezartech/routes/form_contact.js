@@ -8,6 +8,7 @@ var request = require('request');
 router.post('/', function (req, res, next) {
 
 	console.log("comming")
+	console.log(req.body)
 
 	if(typeof req.body != 'undefined') {
 

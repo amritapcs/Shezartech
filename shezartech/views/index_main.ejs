@@ -238,7 +238,9 @@
                             <div class="col-lg-12 col-md-12" >
                                 <div class="features_ara"><br>
                                     <h1 style="font-weight: 300;">BROADCAST MESSAGE</h1>
-                                    <form class="footer_form">
+                                    <!-- <form class="footer_form" action="form_contact"> -->
+                                    <form class="footer_form" action="form_contact" method="POST" style="margin-top: 5px; margin-left: 35px;">
+                                        <input type="hidden" name="config_type" value="4">
                                         <div class="row">
                                             <div class="col-lg-2 col-md-2"></div>
                                             <div class="col-lg-8 col-md-8" style="font-size: 16px;">
@@ -247,19 +249,19 @@
                                                         <div class="col-lg-6 col-md-6" style="font-size: 16px;">
                                                             <p style="float:left;">Select Template</p>
                                                             <select  class="form-control" placeholder="Select Template" style="height: 40px">
-                                                                <option value="" disabled selected>DOJ</option>
-                                                                <option value="saab">Saab</option>
-                                                                <option value="vw">VW</option>
-                                                                <option value="audi" >Audi</option>
+                                                                <option value="" disabled selected>Template 1</option>
+                                                                <option value="saab">Template 2</option>
+                                                                <option value="vw">Template 3</option>
+                                                                <option value="audi" >Template 4</option>
                                                             </select><br>
                                                         </div>   
                                                         <div class="col-lg-6 col-md-6" style="font-size: 16px;">
-                                                            <br>
+                                                            <p style="float:left;">Select List</p>
                                                             <select  class="form-control" placeholder="Select Template" style="height: 40px;margin-top: 15px;">
-                                                                <option value="" disabled selected>Whenever</option>
-                                                                <option value="saab">Saab</option>
-                                                                <option value="vw">VW</option>
-                                                                <option value="audi" >Audi</option>
+                                                                <option value="" disabled selected>List 1</option>
+                                                                <option value="saab">List 2</option>
+                                                                <option value="vw">List 3</option>
+                                                                <option value="audi" >List 4</option>
                                                             </select><br>
                                                         </div>
                                                     </div>
