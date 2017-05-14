@@ -6,7 +6,7 @@ $(document).ready(function(){
 		var tmp_id = $(this).val();
 		$.ajax({
 			method : 'get',
-			url : '/form_contact',
+			url : 'form_contact',
 			data : {tmp_id:tmp_id},
 			success: function(result){
 		        console.log(result)
@@ -24,7 +24,7 @@ $(document).ready(function(){
 			console.log(data)
 			$.ajax({
 				method : 'post',
-				url : '/form_contact',
+				url : 'form_contact',
 				data : data,
 				success: function(result){
 					console.log("klkklk")
