@@ -239,7 +239,7 @@
                                 <div class="features_ara"><br>
                                     <h1 style="font-weight: 300;">BROADCAST MESSAGE</h1>
                                     <!-- <form class="footer_form" action="form_contact"> -->
-                                    <form class="footer_form" action="form_contact" method="POST" style="margin-top: 5px; margin-left: 35px;">
+                                    <form class="footer_form" id="broadcast_form" style="margin-top: 5px; margin-left: 35px;">
                                         <input type="hidden" name="config_type" value="4">
                                         <div class="row">
                                             <div class="col-lg-2 col-md-2"></div>
@@ -248,33 +248,43 @@
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6" style="font-size: 16px;">
                                                             <p style="float:left;">Select Template</p>
-                                                            <select  class="form-control" placeholder="Select Template" style="height: 40px">
-                                                                <option value="" disabled selected>Template 1</option>
-                                                                <option value="saab">Template 2</option>
-                                                                <option value="vw">Template 3</option>
-                                                                <option value="audi" >Template 4</option>
+                                                            <select class="form-control template_id" name="template_id" placeholder="Select Template" style="height: 40px">
+                                                                <option value="" disabled selected>Template</option>
+                                                                <% templates.forEach(function(row){ %>
+                                                                    <option value="<%= row.zalo_template_id %>"><%= row.template_name %></option>
+                                                                <% }) %>
+                                                                <!-- <option value="1">Template1</option>
+                                                                <option value="2">Template2</option>
+                                                                <option value="3" >Template3</option> -->
                                                             </select><br>
                                                         </div>   
                                                         <div class="col-lg-6 col-md-6" style="font-size: 16px;">
                                                             <p style="float:left;">Select List</p>
-                                                            <select  class="form-control" placeholder="Select Template" style="height: 40px;margin-top: 15px;">
-                                                                <option value="" disabled selected>List 1</option>
-                                                                <option value="saab">List 2</option>
-                                                                <option value="vw">List 3</option>
-                                                                <option value="audi" >List 4</option>
+                                                            <select class="form-control" name="list_id" placeholder="Select Template" style="height: 40px;margin-top: 15px;">
+                                                                <option value = "" disabled selected>List</option>
+                                                                <% lists.forEach(function(row){ %>
+                                                                    <option value="<%= row.list_id %>"><%= row.list_name %></option>
+                                                                <% }) %>
+                                                                <!-- <option value="1">List 1</option>
+                                                                <option value="2">List 2</option>
+                                                                <option value="3" >List 3</option> -->
                                                             </select><br>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <textarea class="form-control"  cols="20" rows="4" ></textarea>
+                                                        <!-- <div style="height: 125px;width: 100%;border: 1px solid #9090B1;">
+                                                            <p></p>
+                                                        </div> -->
+                                                        <textarea class="form-control text_content" name="text_content" cols="20" rows="4" val=""></textarea>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                         <p style="float:left;">When to Check</p><br>
                                                     </div>
                                                     <div class="form-group" style="text-align:left;">
-                                                        <p style="float: left;margin: 0 0 9px;"> <input type="time" name="vehicle" value="Bike" style="width: 255px;padding-left: 20px;margin-bottom: 20px;height: 40px;"><img src="images/CLock.png" alt="" style="width: 43px;margin-top: -2px;"></p><br>
-                                                    </div> 
+                                                        <p style="float: left;margin: 0 0 9px;"> <input type="time" name="time_select" value="Bike" style="width: 255px;padding-left: 20px;margin-bottom: 20px;height: 40px;"><img src="images/CLock.png" alt="" style="width: 43px;margin-top: -2px;"></p><br>
+                                                    </div>  -->
                                                 </div>
+                                                <div class="success_div" style=""></div>
                                                 <span style="float:right;">
                                                     <input class="contact_sendbtn" type="submit" value="CANCEL" style="background-color:black;color:white;margin-right: 10px;    height: 35px;">
                                                     <input class="contact_sendbtn" type="submit" value="OK" style="    height: 35px;"><br><br>
@@ -330,6 +340,7 @@
 
         <!-- Custom js -->
         <script type="text/javascript" src="javascripts/custom.js"></script>
+        <script type="text/javascript" src="javascripts/index_main.js"></script>
 
     </body>
 </html>

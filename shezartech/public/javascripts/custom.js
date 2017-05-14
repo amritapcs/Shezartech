@@ -20,8 +20,6 @@
 
  //for main slider
  jQuery(function($){
-
-  console.log("hhhhhh");
   
     /* ----------------------------------------------------------- */
     /*  1.HEADER SLIDER

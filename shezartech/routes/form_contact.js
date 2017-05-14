@@ -24,13 +24,17 @@ router.post('/', function (req, res, next) {
 			res.send("csv data inserted successfully !!")
 		}
 		else if(req.body.config_type == '4') {
+			var templateid = req.body.template_id;
+			var list_id = parseInt(req.body.list_id)
 			db.getConnection(function (db) {
         		console.log("connected db from zalo contact page : ")
 
         		db.collection('zalo_contacts', function(err, collection) {
-            		collection.find().toArray(function(err, resulte) {
+            		collection.find({list_id: list_id}).toArray(function(err, resulte) {
 
                 		resulte.forEach(function (resulte,iop){
+                			console.log("bhbhbhbhbhbhbh")
+                			console.log(resulte)
 
 		                    var result = resulte;   
 		                    var name = result.name;
@@ -39,7 +43,6 @@ router.post('/', function (req, res, next) {
 		                    var company = result.company;
 		                    var number = result.number;
 		                    var date = result.date;
-		                    var templateid = result.templateid;
 		                    var timestamp = new Date().getTime();
 		                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
 		                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
@@ -122,35 +125,51 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
-	var data = [];
 
-	async.series([
-	    function(callback) {
-	        // do some stuff ...
-	        callback(null, 'one');
-	    },
-	    function(callback) {
-	        // do some more stuff ...
-	        callback(null, 'two');
-	    }
-	],
+	console.log("himmmmmmmm")
+
+	console.log(req.query.tmp_id)
+	var templateid = req.query.tmp_id;
+
+	db.getConnection(function (db) {
+
+        db.collection('templates', function(err, collection) {
+            collection.find({ zalo_template_id: templateid }).toArray(function(err, result) {
+            	console.log(result[0].content)
+            	res.send(result[0].content);
+            })
+        });
+    })
+
+	//var data = [];
+
+	// async.series([
+	//     function(callback) {
+	//         // do some stuff ...
+	//         callback(null, 'one');
+	//     },
+	//     function(callback) {
+	//         // do some more stuff ...
+	//         callback(null, 'two');
+	//     }
+	// ],
 	// optional callback
-	function(err, results) {
-	    // results is now equal to ['one', 'two']
-	});
+	// function(err, results) {
+	//     // results is now equal to ['one', 'two']
+	// });
 
 	//////////////////////////////////////////
-			db.getConnection(function (db) {
-		        var col = db.collection('contacts')
-			    var cursor = col.find().forEach( function (myDoc) {
-			    	console.log(myDoc) 
-			    	data.push(myDoc)
-			    	console.log(data)
-			    });
-			    //console.log(data)
-			});
-			console.log(data)
-			res.send("csv")
+			// db.getConnection(function (db) {
+		 //        var col = db.collection('contacts')
+			//     var cursor = col.find().forEach( function (myDoc) {
+			//     	console.log(myDoc) 
+			//     	data.push(myDoc)
+			//     	console.log(data)
+			//     });
+			//     //console.log(data)
+			// });
+			// console.log(data)
+			// res.send("csv")
 	//////////////////////////////////////////
 });
 
