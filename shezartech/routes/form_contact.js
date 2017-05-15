@@ -37,42 +37,44 @@ router.post('/', function (req, res, next) {
                 			console.log(resulte)
 
 		                    var result = resulte;   
-		                    var name = result.name;
+		                    //var name = result.name;
 		                    var phone = parseInt(result.phone);
 		                    var oaid = '1032900368143269705';
-		                    var company = result.company;
-		                    var number = result.number;
-		                    var date = result.date;
+		                    //var company = result.company;
+		                    //var number = result.number;
+		                    //var date = result.date;
 		                    var timestamp = new Date().getTime();
 		                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
 		                    //var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
 		                    
 		                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{}}';
 
-		                    execPhp('messenger.php', (error, php, outprint) => { 
+		                    console.log(data)
 
-		                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
+		                    // execPhp('messenger.php', (error, php, outprint) => { 
+
+		                    //     php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
 		                       
-		                            var options = { method: 'POST',
-		                                url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
-		                                qs: { 
-		                                    oaid: oaid,
-		                                    data: data,
-		                                    timestamp: timestamp,
-		                                    mac: results
-		                                },
-		                                headers: { 
-		                                    'cache-control': 'no-cache' 
-		                                } 
-		                            };
+		                    //         var options = { method: 'POST',
+		                    //             url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
+		                    //             qs: { 
+		                    //                 oaid: oaid,
+		                    //                 data: data,
+		                    //                 timestamp: timestamp,
+		                    //                 mac: results
+		                    //             },
+		                    //             headers: { 
+		                    //                 'cache-control': 'no-cache' 
+		                    //             } 
+		                    //         };
 
-		                            request(options, function (error, response, body) {
-		                              if (error) throw new Error(error);
+		                    //         request(options, function (error, response, body) {
+		                    //           if (error) throw new Error(error);
 
-		                              console.log(body);
-		                            });
-		                        });
-		                    });
+		                    //           console.log(body);
+		                    //         });
+		                    //     });
+		                    // });
                 		});
             		});
         		});
