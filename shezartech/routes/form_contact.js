@@ -45,7 +45,9 @@ router.post('/', function (req, res, next) {
 		                    var date = result.date;
 		                    var timestamp = new Date().getTime();
 		                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
-		                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
+		                    //var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
+		                    
+		                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{}}';
 
 		                    execPhp('messenger.php', (error, php, outprint) => { 
 
