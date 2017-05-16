@@ -51,30 +51,30 @@ router.post('/', function (req, res, next) {
 
 		                    console.log(data)
 
-		                    // execPhp('messenger.php', (error, php, outprint) => { 
+		                    execPhp('messenger.php', (error, php, outprint) => { 
 
-		                    //     php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
+		                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
 		                       
-		                    //         var options = { method: 'POST',
-		                    //             url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
-		                    //             qs: { 
-		                    //                 oaid: oaid,
-		                    //                 data: data,
-		                    //                 timestamp: timestamp,
-		                    //                 mac: results
-		                    //             },
-		                    //             headers: { 
-		                    //                 'cache-control': 'no-cache' 
-		                    //             } 
-		                    //         };
+		                            var options = { method: 'POST',
+		                                url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
+		                                qs: { 
+		                                    oaid: oaid,
+		                                    data: data,
+		                                    timestamp: timestamp,
+		                                    mac: results
+		                                },
+		                                headers: { 
+		                                    'cache-control': 'no-cache' 
+		                                } 
+		                            };
 
-		                    //         request(options, function (error, response, body) {
-		                    //           if (error) throw new Error(error);
+		                            request(options, function (error, response, body) {
+		                              if (error) throw new Error(error);
 
-		                    //           console.log(body);
-		                    //         });
-		                    //     });
-		                    // });
+		                              console.log(body);
+		                            });
+		                        });
+		                    });
                 		});
             		});
         		});
