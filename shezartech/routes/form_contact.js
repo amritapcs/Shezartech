@@ -73,7 +73,7 @@ router.post('/', function (req, res, next) {
 		                            request(options, function (error, response, body) {
 		                              	if (error) throw new Error(error);
 		                              	console.log(body);
-		                              	body = JSON.parse(body)
+		                              	//body = JSON.parse(body)
 		                                if(body.data) {
 		                                	var msgid = body.body.msgId;
 		                                	console.log("msgid is :: "+msgid)
