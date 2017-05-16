@@ -75,7 +75,7 @@ router.post('/', function (req, res, next) {
 		                              	console.log(body);
 		                              	body = JSON.parse(body)
 		                                if(body.data) {
-		                                	var msgid = body.body.msgId;
+		                                	var msgid = body.data.msgId;
 		                                	console.log("msgid is :: "+msgid)
 		                                    var insert_data = {templateid: templateid, phone:phone, time : timestamp, delivery_status : body.data.status, msgid : msgid }
 		                                    db.collection('delivery_status').update({ fromuid:fromuid, msgid:msgid }, insert_data, { upsert : true });
