@@ -71,9 +71,13 @@ router.post('/', function (req, res, next) {
 		                            };
 
 		                            request(options, function (error, response, body) {
-		                              if (error) throw new Error(error);
-
-		                              console.log(body);
+		                              	if (error) throw new Error(error);
+		                              	console.log(body);
+		                              	body = JSON.parse(body)
+		                                if(body.data) {
+		                                    var insert_data = { fromuid : fromuid, time : timestamp, delivery_status : body.data.status, msgid : msgid }
+		                                    db.collection('delivery_status').update({ fromuid:fromuid, msgid:msgid }, insert_data, { upsert : true });
+		                                }
 		                            });
 		                        });
 		                   	});
