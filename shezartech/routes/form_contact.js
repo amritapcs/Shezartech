@@ -32,6 +32,8 @@ router.post('/', function (req, res, next) {
         		db.collection('zalo_contacts', function(err, collection) {
             		collection.find({list_id: list_id}).toArray(function(err, resulte) {
 
+            			execPhp('messenger.php', (error, php, outprint) => { 
+
                 		resulte.forEach(function (resulte,iop){
                 			console.log("bhbhbhbhbhbhbh")
                 			console.log(resulte)
@@ -51,7 +53,7 @@ router.post('/', function (req, res, next) {
 
 		                    console.log(data)
 
-		                    execPhp('messenger.php', (error, php, outprint) => { 
+		                    // execPhp('messenger.php', (error, php, outprint) => { 
 
 		                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
 		                       
@@ -74,7 +76,7 @@ router.post('/', function (req, res, next) {
 		                              console.log(body);
 		                            });
 		                        });
-		                    });
+		                   	});
                 		});
             		});
         		});

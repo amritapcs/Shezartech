@@ -9,7 +9,7 @@ var debug = require('debug')('shezartech:server');
 var http = require('http');
 var fs = require('fs');
 var https = require('https');
-https.globalAgent.maxSockets = 5;
+https.globalAgent.maxSockets = Infinity;
 var options = {
     key: fs.readFileSync('/var/www/botshezar.com/botshezar.com.key'),
     cert: fs.readFileSync('/var/www/botshezar.com/219c087d9f98a683.crt')
