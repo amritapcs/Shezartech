@@ -1,5 +1,7 @@
 $(document).ready(function(){
-    
+
+	$('.open_close').hide();
+
 	$('.template_id').on('change', function () {
 		console.log("ttttttt");
 		console.log($(this).val());
@@ -15,6 +17,20 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.templates_scheduling').on('change', function () {
+		var tmp_id = $(this).val();
+		$.ajax({
+			method : 'get',
+			url : 'form_contact',
+			data : {tmp_id:tmp_id},
+			success: function(result){
+				console.log("ioioio")
+		        console.log(result)
+		        $('.templates_scheduling_content').val(result)
+		    }
+		});
+	});
+
 	$('#broadcast_form').on('submit', function () {
 		var form = $(this);
 		var status = formValidate(form);
@@ -25,6 +41,43 @@ $(document).ready(function(){
 			$.ajax({
 				method : 'post',
 				url : 'form_contact',
+				data : data,
+				success: function(result){
+					console.log("klkklk")
+			        console.log(result)
+			        $('.success_div').text(result)
+			    }
+			});
+		}
+		return false;
+	});
+
+	$('.select_message_days').on('click', function () {
+		console.log($(this).val())
+		if($(this). prop("checked") == true){
+			$('.open_close').show();
+		}
+		else {
+			$('.open_close').hide();
+		}
+	});
+
+	$('#Scheduling_form').on('submit', function () {
+		var form = $(this);
+		var status = formValidate(form);
+		var data = $(this).serializeArray();
+		console.log("bbbbbbbbbbbbbb");
+		//console.log(data);
+		if(status) {
+			var data = $(this).serializeArray();
+			console.log(data)
+			var obj = [];
+			$.each(data, function (key, extra_data) {
+
+			});
+			$.ajax({
+				method : 'post',
+				url : 'scheduling',
 				data : data,
 				success: function(result){
 					console.log("klkklk")

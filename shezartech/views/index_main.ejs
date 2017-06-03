@@ -156,59 +156,87 @@
                         <div class="features_ara"><br>
                             <h1 style="font-weight: 300;">SHEDULE MESSAGE</h1>
                             <p> A message should me sent to the contact</p>
-                            <form class="footer_form" >
+                            <form class="footer_form" id="Scheduling_form">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-2"></div>
                                     <div class="col-lg-8 col-md-8" style="font-size: 16px;">
                                         <div class="form-grooup" style="font-size: 16px;">
-                                            <select  class="form-control" placeholder="Select Template" style="height: 40px">
-                                                <option value="" disabled selected>Select Template</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="vw">VW</option>
-                                                <option value="audi" >Audi</option>
-                                            </select><br>
+                                            <!-- <select class="form-control templates_scheduling" placeholder="Select Template" style="height: 40px">
+                                                <option value="" disabled selected>Template</option>
+                                                <% templates.forEach(function(row){ %>
+                                                    <option value="<%= row.zalo_template_id %>"><%= row.template_name %></option>
+                                                <% }) %>
+                                            </select><br> -->
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6" style="font-size: 16px;">
+                                                    <p style="float:left;">Select Template</p>
+                                                    <select class="form-control templates_scheduling" name="template_id" placeholder="Select Template" style="height: 40px">
+                                                        <option value="" disabled selected>Template</option>
+                                                        <% templates.forEach(function(row){ %>
+                                                            <option value="<%= row.zalo_template_id %>"><%= row.template_name %></option>
+                                                        <% }) %>
+                                                        <!-- <option value="1">Template1</option>
+                                                        <option value="2">Template2</option>
+                                                        <option value="3" >Template3</option> -->
+                                                    </select><br>
+                                                </div>   
+                                                <div class="col-lg-6 col-md-6" style="font-size: 16px;">
+                                                    <p style="float:left;">Select List</p>
+                                                    <select class="form-control" name="list_id" placeholder="Select Template" style="height: 40px;margin-top: 15px;">
+                                                        <option value = "" disabled selected>List</option>
+                                                        <% lists.forEach(function(row){ %>
+                                                            <option value="<%= row.list_id %>"><%= row.list_name %></option>
+                                                        <% }) %>
+                                                        <!-- <option value="1">List 1</option>
+                                                        <option value="2">List 2</option>
+                                                        <option value="3" >List 3</option> -->
+                                                    </select><br>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
-                                                <textarea class="form-control"  cols="20" rows="4" ></textarea>
+                                                <textarea class="form-control templates_scheduling_content"  cols="20" rows="4" readonly="true"></textarea>
                                             </div>
                                             <div class="form-group" style="text-align:left;">
-                                                <p style="font-size: 16px;"> <input type="checkbox" name="vehicle" value="Bike">&nbsp;&nbsp;I want to choose when to send this message</p>
+                                                <p style="font-size: 16px;"> <input type="checkbox" class="select_message_days" name="select_message_days">&nbsp;&nbsp;I want to choose when to send this message</p>
                                             </div> 
-                                            <div class="form-group">
-                                                <p style="text-align:left;font-size: 16px">
-                                                    You can choose the timeframe for sending the message. For example , if a contact subscribes at 11 p.m. on sunday, you can choose to send this message at 8 a.m on Monday.
-                                                    <br><br>
-                                                    When should this message sent?
-                                                </p>
+                                            <div class="open_close">
+                                                <div class="form-group">
+                                                    <p style="text-align:left;font-size: 16px">
+                                                        You can choose the timeframe for sending the message. For example , if a contact subscribes at 11 p.m. on sunday, you can choose to send this message at 8 a.m on Monday.
+                                                        <br><br>
+                                                        When should this message sent?
+                                                    </p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p style="float:left;"> 
+                                                        <input type="checkbox" name="mon" checked="true">&nbsp;<span style="margin-right:33px;">Mon</span>
+                                                        <input type="checkbox" name="tue" checked="true">&nbsp;<span style="margin-right:33px;">Tue</span>
+                                                        <input type="checkbox" name="wed" checked="true">&nbsp;<span style="margin-right:33px;">Wed</span>
+                                                        <input type="checkbox" name="thu" checked="true">&nbsp;<span style="margin-right:33px;">Thur</span>
+                                                        <input type="checkbox" name="fri" checked="true">&nbsp;<span style="margin-right:33px;">Fri</span>
+                                                        <input type="checkbox" name="sat" checked="true">&nbsp;<span style="margin-right:33px;">Sat</span>
+                                                        <input type="checkbox" name="sun" checked="true">&nbsp;<span style="margin-right:33px;">Sun</span>
+                                                    </p><br><br>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <p style="float:left;"> 
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Mon</span>
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Tue</span>
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Wed</span>
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Thur</span>
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Fri</span>
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Sat</span>
-                                                    <input type="checkbox" name="vehicle" value="Bike">&nbsp;<span style="margin-right:33px;">Sun</span>
-                                                </p><br><br>
-                                            </div>
-<span>
-                                            <div class="form-group" style="text-align:left;">
-                                                <p style="float: left;"> <input type="time" name="vehicle" value="Bike" style="width: 231px;padding-left: 20px;margin-bottom: 20px;height: 40px;"><img src="images/CLock.png" alt="" style="width: 43px;margin-top: -2px;">&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" name="vehicle" value="Bike" style="width: 231px;padding-left: 20px;margin-bottom: 20px;height: 40px;"><img src="images/CLock.png" alt="" style="width: 43px;margin-top: -2px;"></p><br>
-                                            </div> 
 
-                                            <!--      <div class="input-group clockpicker">
-<input type="text" class="form-control" value="18:00">
-<span class="input-group-addon">
-<span class="glyphicon glyphicon-time"></span>
-</span>
-</div>-->
-                                            <select  class="form-control" style="height: 40px" >
-                                                <option value="" disabled selected>Monthly Scheduling</option>
-                                                <option value="saab">Saab</option>
-                                                <option value="vw">VW</option>
-                                                <option value="audi" >Audi</option>
-                                            </select><br>
+                                            <div class="row no-padding">
+                                                <div class="form-group col-md-6 no-padding" style="text-align:left;">
+                                                    <p style="float: left;"> <input type="time" name="start_time" value="00:00" style="width: 231px;padding-left: 20px;margin-bottom: 20px;height: 40px;"><img src="images/CLock.png" alt="" style="width: 43px;margin-top: -2px;"></p>
+                                                   <!--  &nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" name="end_time" value="23:59" style="width: 231px;padding-left: 20px;margin-bottom: 20px;height: 40px;"><img src="images/CLock.png" alt="" style="width: 43px;margin-top: -2px;"></p><br> -->
+                                                </div> 
+
+                                                <div class="col-md-6">
+                                                    <select class="form-control" name="select_slot" style="height: 40px" >
+                                                        <option value="" disabled selected>Select Slot</option>
+                                                        <option value="daily">Daily</option>
+                                                        <option value="monthly">Monthly</option>
+                                                        <option value="yearly" >Yearly</option>
+                                                    </select><br>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="success_div" style=""></div>
                                         <span style="float:right;">
                                             <input class="contact_sendbtn" type="submit" value="CANCEL" style="background-color:black;color:white;margin-right: 10px;height: 35px;">
                                             <input class="contact_sendbtn" type="submit" value="OK" style="    height: 35px;"><br><br>
@@ -244,7 +272,7 @@
                                         <div class="row">
                                             <div class="col-lg-2 col-md-2"></div>
                                             <div class="col-lg-8 col-md-8" style="font-size: 16px;">
-                                                <div class="form-grooup" style="font-size: 16px;">
+                                                <div class="form-group" style="font-size: 16px;">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6" style="font-size: 16px;">
                                                             <p style="float:left;">Select Template</p>

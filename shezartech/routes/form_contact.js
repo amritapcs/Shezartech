@@ -26,68 +26,7 @@ router.post('/', function (req, res, next) {
 		else if(req.body.config_type == '4') {
 			var templateid = req.body.template_id;
 			var list_id = parseInt(req.body.list_id)
-			db.getConnection(function (db) {
-        		console.log("connected db from zalo contact page : ")
-
-        		db.collection('zalo_contacts', function(err, collection) {
-            		collection.find({list_id: list_id}).toArray(function(err, resulte) {
-
-            			execPhp('messenger.php', (error, php, outprint) => { 
-
-                		resulte.forEach(function (resulte,iop){
-                			console.log("bhbhbhbhbhbhbh")
-                			console.log(resulte)
-
-		                    var result = resulte;   
-		                    //var name = result.name;
-		                    var phone = parseInt(result.phone);
-		                    var oaid = '1032900368143269705';
-		                    //var company = result.company;
-		                    //var number = result.number;
-		                    //var date = result.date;
-		                    var timestamp = new Date().getTime();
-		                    var secretkey = 'IEklE4N1I7bWqp5TOQ2F';
-		                    //var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{"name":"'+name+'","company":"'+company+'","number":"'+number+'","date":"'+date+'"}}';
-		                    
-		                    var data = '{"phone":'+phone+',"templateid":"'+templateid+'","templatedata":{}}';
-
-		                    console.log(data)
-
-		                    // execPhp('messenger.php', (error, php, outprint) => { 
-
-		                        php.my_function_zalo(oaid, data, timestamp, secretkey, (err, results, output, printed) => {
-		                       
-		                            var options = { method: 'POST',
-		                                url: 'https://openapi.zaloapp.com/oa/v1/sendmessage/phone/cs',
-		                                qs: { 
-		                                    oaid: oaid,
-		                                    data: data,
-		                                    timestamp: timestamp,
-		                                    mac: results
-		                                },
-		                                headers: { 
-		                                    'cache-control': 'no-cache' 
-		                                } 
-		                            };
-
-		                            request(options, function (error, response, body) {
-		                              	if (error) throw new Error(error);
-		                              	console.log(body);
-		                              	body = JSON.parse(body)
-		                                if(body.data) {
-		                                	var msgid = body.data.msgId;
-		                                	console.log("msgid is :: "+msgid)
-		                                    var insert_data = {templateid: templateid, phone:phone, time : timestamp, delivery_status : body.data.status, msgid : msgid }
-		                                    db.collection('delivery_status').insert(insert_data);
-		                                }
-		                            });
-		                        });
-		                   	});
-                		});
-            		});
-        		});
-
-    		});
+			Utility.sendBroadcastMessege(templateid, list_id);
     		res.send("Broadcasting done successfully !!")
 		}
 		else {
