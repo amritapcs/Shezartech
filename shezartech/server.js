@@ -33,8 +33,8 @@ var options = {
     key: fs.readFileSync('/var/www/botshezar.com/botshezar.com.key'),
     cert: fs.readFileSync('/var/www/botshezar.com/219c087d9f98a683.crt')
 };
-//var server = https.createServer(options, app);
-var server = http.createServer(app);
+var server = https.createServer(options, app);
+//var server = http.createServer(app);
 
 
 //var restify = require('restify');
