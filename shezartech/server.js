@@ -45,6 +45,7 @@ String.prototype.contains = function(content){
   return this.indexOf(content) !== -1;
 }
 bot.dialog('/', function (session) {
+  console.log("session.message.text.toLowerCase() :: "+session.message.text.toLowerCase())
     if(session.message.text.toLowerCase().contains('hello')){
       session.send(`Hey, How are you?`);
       }
