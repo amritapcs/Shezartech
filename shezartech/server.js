@@ -54,22 +54,22 @@ bot.dialog('/', function (session) {
       else if(session.message.text.toLowerCase().contains('help')){
         session.send(`How can I help you?`);
       }
-      else if(session.message.text.toLowerCase().contains('From where can I get a return form?')) {
+      else if(session.message.text.toLowerCase() == 'From where can I get a return form?') {
         session.send(`The return form can be downloaded from the site http://www.incometaxindia.gov.in or http://incometaxindiaefiling.gov.in`);
       }
-      else if(session.message.text.toLowerCase().contains('Is there any e-filling help desk established by the Income-tax Departement?')) {
+      else if(session.message.text.toLowerCase() == 'Is there any e-filling help desk established by the Income-tax Departement?') {
         session.send(`​​In case of queries on e-filing of return, the taxpayer can contact 1800 4250 0025.`);
       }
-      else if(session.message.text.toLowerCase().contains('Who can use ITR-1 (Sahaj) ?')) {
+      else if(session.message.text.toLowerCase() == 'Who can use ITR-1 (Sahaj) ?') {
         session.send(`For Individuals having Income from Salaries, one house property, other sources (Interest etc.) and having total income upto Rs.50 lakh`);
       }
-      else if(session.message.text.toLowerCase().contains('Who can use ITR-2 ?')) {
+      else if(session.message.text.toLowerCase() == 'Who can use ITR-2 ?') {
         session.send(`For Individuals not carrying out business or profession under any proprietorship;`);
       }
-      else if(session.message.text.toLowerCase().contains('Who can use ITR-3 ?')) {
+      else if(session.message.text.toLowerCase() == 'Who can use ITR-3 ?') {
         session.send(`For individuals having income from a proprietary business or profession.`);
       }
-      else if(session.message.text.toLowerCase().contains('Who cannot use ITR-3? ')) {
+      else if(session.message.text.toLowerCase() == 'Who cannot use ITR-3?') {
         session.send(`​​Form ITR – 3 cannot be used by any person other than an individual or a HUF. Further, an individual or a HUF not having income from business or profession cannot use ITR – 3`);
       }
       else{
